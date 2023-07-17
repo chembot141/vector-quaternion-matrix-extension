@@ -194,17 +194,17 @@ namespace VQME {
 
         //create a quaternion from x y and z rotations in 3-2-1 format
         static FromEulerAngles(x: number, y: number, z: number) {
+            let cz = Math.cos(z * 0.5);
+            let sz = Math.sin(z * 0.5);
             let cx = Math.cos(x * 0.5);
             let sx = Math.sin(x * 0.5);
             let cy = Math.cos(y * 0.5);
             let sy = Math.sin(y * 0.5);
-            let cz = Math.cos(z * 0.5);
-            let sz = Math.sin(z * 0.5);
 
-            let nw = cx * cy * cz + sx * sy * sz;
-            let nx = sx * cy * cz - cx * sy * sz;
-            let ny = cx * sy * cz + sx * cy * sz;
-            let nz = cx * cy * sz - sx * sy * cz;
+            let nw = cz * cx * cy + sz * sx * sy;
+            let nx = sz * cx * cy - cz * sx * sy;
+            let ny = cz * sx * cy + sz * cx * sy;
+            let nz = cz * cx * sy - sz * sx * cy;
 
             return new Quaternion(nw, nx, ny, nz);
         }
@@ -216,7 +216,7 @@ namespace VQME {
 
         //create a vector 3 from a quaternion in 3-2-1 format
         static ToEulerAngles(q: Quaternion) {
-            let angles: Vec3;
+            let angles = new Vec3(0, 0, 0);
 
             // roll (x-axis rotation)
             let sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
