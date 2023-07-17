@@ -160,7 +160,7 @@ namespace VQME {
                     }
                 }
             }
-            return m;
+            return new Matrix(m);
         }
 
         static display(m: Matrix) {
