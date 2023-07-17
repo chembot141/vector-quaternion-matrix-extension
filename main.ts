@@ -216,24 +216,22 @@ namespace VQME {
 
         //create a vector 3 from a quaternion in 3-2-1 format
         static ToEulerAngles(q: Quaternion) {
-            let angles = new Vec3(0, 0, 0);
-
             // roll (x-axis rotation)
             let sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
             let cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
-            angles.x = Math.atan2(sinr_cosp, cosr_cosp);
+            let nx = Math.atan2(sinr_cosp, cosr_cosp);
 
             // pitch (y-axis rotation)
             let sinp = Math.sqrt(1 + 2 * (q.w * q.y - q.x * q.z));
             let cosp = Math.sqrt(1 - 2 * (q.w * q.y - q.x * q.z));
-            angles.y = 2 * Math.atan2(sinp, cosp) - Math.PI / 2;
+            let ny = 2 * Math.atan2(sinp, cosp) - Math.PI / 2;
 
             // yaw (z-axis rotation)
             let siny_cosp = 2 * (q.w * q.z + q.x * q.y);
             let cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
-            angles.z = Math.atan2(siny_cosp, cosy_cosp);
+            let nz = Math.atan2(siny_cosp, cosy_cosp);
 
-            return angles;
+            return new Vec3(nx, ny, nz);
         }
     }
 }
