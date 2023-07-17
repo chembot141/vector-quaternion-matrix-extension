@@ -220,16 +220,19 @@ namespace VQME {
             let sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
             let cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
             let nx = Math.atan2(sinr_cosp, cosr_cosp);
-
+            console.log("nx: " + nx);
+            
             // pitch (y-axis rotation)
             let sinp = Math.sqrt(1 + 2 * (q.w * q.y - q.x * q.z));
             let cosp = Math.sqrt(1 - 2 * (q.w * q.y - q.x * q.z));
             let ny = 2 * Math.atan2(sinp, cosp) - Math.PI / 2;
+            console.log("ny: " + ny);
 
             // yaw (z-axis rotation)
             let siny_cosp = 2 * (q.w * q.z + q.x * q.y);
             let cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
             let nz = Math.atan2(siny_cosp, cosy_cosp);
+            console.log("nz: " + nz);
 
             return new Vec3(nx, ny, nz);
         }
