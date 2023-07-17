@@ -231,9 +231,7 @@ namespace VQME {
             let cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
             let nz = Math.atan2(siny_cosp, cosy_cosp);
             
-            let ret = new Vec3(nx, ny, nz);
-            console.log("ret is: " + ret.ToString());
-            return ret;
+            return [nx, ny, nz];
         }
     }
 }
