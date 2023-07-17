@@ -1,4 +1,5 @@
-namespace ChemVectorQuaternionMatrix {
+//Vector Quaternion Matrix Extension
+namespace VQME {
 
     export function RotateVec(lhs: Quaternion, rhs: Vec3) {
 
